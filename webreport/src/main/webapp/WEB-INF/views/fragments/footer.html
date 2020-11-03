@@ -11,7 +11,7 @@
     </div>
     <div th:fragment="footer-admin" th:align="center">
         &copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2017</span>
-        <span>My Awesome App </span><span th:text="${@environment.getProperty('app.version')}"></span>
+        <span>Report application </span><span th:text="${@environment.getProperty('app.version')}"></span>
     </div>
 </body>
 </html>
