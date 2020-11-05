@@ -1,7 +1,5 @@
 package liveproject.webreport.season;
 
-import liveproject.webreport.result.ResultService;
-
 import java.util.List;
 
 public class Season {
