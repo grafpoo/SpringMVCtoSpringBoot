@@ -12,6 +12,7 @@ public interface MatchRepository extends JpaRepository<Match, Long> {
     List<Match> findByHomeTeam(String team);
     List<Match> findByAwayTeam(String team);
     List<Match> findByHomeTeamAndAwayTeamAndDate(String homeTeam, String awayTeam, Date date);
+    List<Match> findBySeason(String season);
 
     @Query("SELECT m.homeTeam, count(m.fullTimeResult) from Match m where m.season = :season and m.fullTimeResult = 'H' group by m.homeTeam")
     List<Map<String, Integer>> homeWinsByTeam(@Param("season") String season);

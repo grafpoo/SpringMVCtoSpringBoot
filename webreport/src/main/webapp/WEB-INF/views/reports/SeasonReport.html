@@ -7,44 +7,49 @@
 </head>
 <body>
 
-<table>
-    <thead>
-    <tr>
-        <th scope="col">Team</th>
-        <th scope="col">Points</th>
-        <th scope="col">Goal Difference</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="teamResult : ${season.getTeamResults()}">
-        <td><span th:text="${teamResult.getTeamName()}"></span></td>
-        <td><span th:text="${teamResult.getPoints()}"></span></td>
-        <td><span th:text="${teamResult.getGoalDiff()}"></span></td>
-    </tr>
-    </tbody>
-</table>
-
-<table>
-    <tbody>
-    <tr>
-        <th>Home Wins</th>
-        <td><span th:text="${season.getHomeWins()}"></span></td>
-    </tr>
-    <tr>
-        <th>Away Wins</th>
-        <td><span th:text="${season.getAwayWins()}"></span></td>
-    </tr>
-    <tr>
-        <th>Draws</th>
-        <td><span th:text="${season.getDraws()}"></span></td>
-    </tr>
-    <tr>
-        <th>Goalless Draws</th>
-        <td><span th:text="${season.getGoallessDraws()}"></span></td>
-    </tr>
-    </tbody>
-</table>
-
+<div>
+    <h1>Final Standings for <span th:text="${season.getSeason()}"></span></h1>
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">Team</th>
+            <th scope="col">Points</th>
+            <th scope="col">Goal Difference</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="teamResult : ${season.getTeamResults()}">
+            <td><span th:text="${teamResult.getTeamName()}"></span></td>
+            <td><span th:text="${teamResult.getPoints()}"></span></td>
+            <td><span th:text="${teamResult.getGoalDiff()}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<p>
+<div>
+    <h3>Other Statistics</h3>
+    <table>
+        <tbody>
+        <tr>
+            <th>Home Wins</th>
+            <td><span th:text="${season.getHomeWins()}"></span></td>
+        </tr>
+        <tr>
+            <th>Away Wins</th>
+            <td><span th:text="${season.getAwayWins()}"></span></td>
+        </tr>
+        <tr>
+            <th>Draws</th>
+            <td><span th:text="${season.getDraws()}"></span></td>
+        </tr>
+        <tr>
+            <th>Goalless Draws</th>
+            <td><span th:text="${season.getGoallessDraws()}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <div th:insert="fragments/footer.html"></div>
 
 </body>

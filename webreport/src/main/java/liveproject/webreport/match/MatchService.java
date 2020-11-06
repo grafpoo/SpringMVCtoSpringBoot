@@ -25,14 +25,14 @@ public class MatchService {
 		return match;
 	}
 
-	public Season aggregateSeason(int year) {
+	public Season aggregateSeason(String seasonStr) {
 		int homeWins = 0;
 		int awayWins = 0;
 		int draws = 0;
 		int goallessDraws = 0;
 		Map<String, Integer> teamPoints = new HashMap<>();
 		Map<String, Integer> teamGoalDiff = new HashMap<>();
-		for ( Match match : matchRepository.findAll() ) {
+		for ( Match match : matchRepository.findBySeason(seasonStr) ) {
 			addResults(teamPoints, teamGoalDiff, match.getAwayTeam(), match.getFullTimeAwayGoals()- match.getFullTimeHomeGoals());
 			addResults(teamPoints, teamGoalDiff, match.getHomeTeam(), match.getFullTimeHomeGoals()- match.getFullTimeAwayGoals());
 			if (match.getFullTimeHomeGoals() > match.getFullTimeAwayGoals()) homeWins++;
@@ -52,7 +52,7 @@ public class MatchService {
 		}
 
 		// stick stuff in map
-		Season season = new Season(teamResults, homeWins, awayWins, draws, goallessDraws);
+		Season season = new Season(teamResults, homeWins, awayWins, draws, goallessDraws, seasonStr);
 		return season;
 	}
 

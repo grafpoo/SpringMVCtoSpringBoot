@@ -20,10 +20,10 @@ public class MatchController {
         this.matchService = matchService;
     }
 
-    @GetMapping("season-report/{year}")
+    @GetMapping("season-report/{season}")
     @ResponseStatus(value = HttpStatus.OK)
-    public String account(@PathVariable("year") int year, Model model) {
-        model.addAttribute("season", matchService.aggregateSeason(year));
+    public String account(@PathVariable("season") String season, Model model) {
+        model.addAttribute("season", matchService.aggregateSeason(season));
         return "reports/SeasonReport";
     }
 }

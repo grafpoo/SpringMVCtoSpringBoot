@@ -8,13 +8,15 @@ public class Season {
     private final Integer awayWins;
     private final Integer draws;
     private final Integer goallessDraws;
+    private final String season;
 
-    public Season(List<TeamResult> teamResults, Integer homeWins, Integer awayWins, Integer draws, Integer goallessDraws) {
+    public Season(List<TeamResult> teamResults, Integer homeWins, Integer awayWins, Integer draws, Integer goallessDraws, String season) {
         this.teamResults = teamResults;
         this.homeWins = homeWins;
         this.awayWins = awayWins;
         this.draws = draws;
         this.goallessDraws = goallessDraws;
+        this.season = season;
     }
 
     public List<TeamResult> getTeamResults() {
@@ -36,6 +38,8 @@ public class Season {
     public Integer getGoallessDraws() {
         return goallessDraws;
     }
+
+    public String getSeason() { return season; }
 
     public static class TeamResult {
         private final String teamName;
