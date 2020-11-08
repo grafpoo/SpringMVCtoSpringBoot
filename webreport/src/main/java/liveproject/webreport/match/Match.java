@@ -2,7 +2,6 @@ package liveproject.webreport.match;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -52,7 +51,8 @@ public class Match implements Serializable {
     private Long id;
 
     private String division;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yy") private Date date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yy") private Date gameDate;
+    private String gameTime;
     private String homeTeam;
     private String awayTeam;
     private Integer fullTimeHomeGoals;
@@ -74,91 +74,22 @@ public class Match implements Serializable {
     private Integer awayTeamYellowCards;
     private Integer homeTeamRedCards;
     private Integer awayTeamRedCards;
-    private String bet365HomeWinOdds;
-    private String bet365DrawOdds;
-    private String bet365AwayWinOdds;
-    private String blueSquareHomeWinOdds;
-    private String blueSquareDrawOdds;
-    private String blueSquareAwayWinOdds;
-    private String interwettenHomeWinOdds;
-    private String interwettenDrawOdds;
-    private String interwettenAwayWinOdds;
-    private String ladbrokesHomeWinOdds;
-    private String ladbrokesDrawOdds;
-    private String ladbrokesAwayWinOdds;
-    private String pinnacleHomeWinOdds;
-    private String pinnacleDrawOdds;
-    private String pinnacleAwayWinOdds;
-    private String williamHillHomeWinOdds;
-    private String williamHillDrawOdds;
-    private String williamHillAwayWinOdds;
-    private String vcBetHomeWinOdds;
-    private String vcBetDrawOdds;
-    private String vcBetAwayWinOdds;
-    private Integer bb1X2;
-    private String bbMxH;
-    private String bbAvH;
-    private String bbMxD;
-    private String bbAvD;
-    private String bbMxA;
-    private String bbAvA;
-    private Integer bbOU;
-    private String bbMxGT25;
-    private String bbAvGT25;
-    private String bbMxLT25;
-    private String bbAvLT25;
-    private Integer bbAH;
-    private String bbAHh;
-    private String bbMxAHH;
-    private String bbAvAHH;
-    private String bbMxAHA;
-    private String bbAvAHA;
-    private String pinnacleClosingHomeWinOdds;
-    private String pinnacleClosingDrawOdds;
-    private String pinnacleClosingAwayWinOdds;;
-    private String attendance;
-    private Integer homeTeamHitWoodwork;
-    private Integer awayTeamHitWoodwork;
-    private Integer homeTeamOffsides;
-    private Integer awayTeamOffsides;
-    private Integer homeTeamBookingPoints;
-    private Integer awayTeamBookingPoints;
-    private String gameBookersHomeWinOdds;
-    private String gameBookersDrawOdds;
-    private String gameBookersAwayWinOdds;
-    private String sportingBetHomeWinOdds;
-    private String sportingBetOdds;
-    private String sportingBetAwayWinOdds;
-    private String sportingBetDrawOdds;
-    private String gbGT25;
-    private String gbLT25;
-    private String b365GT25;
-    private String b365LT25;
-    private String gameBookersAsianHandicapHomeWinOdds;
-    private String gameBookersAsianHandicapAwayWinOdds;
-    private String ladbrokesAsianHandicapHomeWinOdds;
-    private String ladbrokesAsianHandicapAwayWinOdds;
-    private String ladbrokesAsianHandicapSize;
-    private String betting365AsianHandicapHomeWinOdds;
-    private String betting365AsianHandicapAwayWinOdds;
-    private String betting365AsianHandicapSize;
     private String season;
-    private String matchDate;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Match match = (Match) o;
-        if (date == null || homeTeam == null || awayTeam == null) return false;
-        return date.equals(match.date) &&
+        if (gameDate == null || homeTeam == null || awayTeam == null) return false;
+        return gameDate.equals(match.gameDate) &&
                 homeTeam.equals(match.homeTeam) &&
                 awayTeam.equals(match.awayTeam);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, homeTeam, awayTeam);
+        return Objects.hash(gameDate, homeTeam, awayTeam);
     }
 }
 

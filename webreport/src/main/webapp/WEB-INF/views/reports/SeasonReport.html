@@ -13,15 +13,17 @@
         <thead>
         <tr>
             <th scope="col">Team</th>
+            <th scope="col">Played</th>
             <th scope="col">Points</th>
             <th scope="col">Goal Difference</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="teamResult : ${season.getTeamResults()}">
-            <td><span th:text="${teamResult.getTeamName()}"></span></td>
-            <td><span th:text="${teamResult.getPoints()}"></span></td>
-            <td><span th:text="${teamResult.getGoalDiff()}"></span></td>
+        <tr th:each="teamResult : ${season.teamResults}">
+            <td><span th:text="${teamResult.teamName}"></span></td>
+            <td><span th:text="${teamResult.played}"></span></td>
+            <td><span th:text="${teamResult.points}"></span></td>
+            <td><span th:text="${teamResult.goalDiff}"></span></td>
         </tr>
         </tbody>
     </table>
@@ -50,6 +52,34 @@
         </tbody>
     </table>
 </div>
+
+<p>
+
+<div>
+    <h1>Statistics for Referees</h1>
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">Referee</th>
+            <th scope="col">Home Wins</th>
+            <th scope="col">Away Wins</th>
+            <th scope="col">Draws</th>
+            <th scope="col">Goalless Draws</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="referee : ${season.refereeResults}">
+            <td th:text="${referee.name}">referee</td>
+            <td th:text="${referee.homeWins}">home wins</td>
+            <td th:text="${referee.awayWins}">away wins</td>
+            <td th:text="${referee.draws}">draws</td>
+            <td th:text="${referee.goallessDraws}">goalless draws</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</p>
 <div th:insert="fragments/footer.html"></div>
 
 </body>
