@@ -57,17 +57,17 @@ public class MatchLoader implements CommandLineRunner {
                     m.setSeason(loadFileSeason);
                     repository.save(m);
                     newCount++;
-                    log.info("Adding new record: " + m.getHomeTeam() + " v " + m.getAwayTeam());
+                    log.fine("Adding new record: " + m.getHomeTeam() + " v " + m.getAwayTeam());
                 } else {
                     alreadyCount++;
-                    log.info("Skipping previous record: " + m.getHomeTeam() + " v " + m.getAwayTeam());
+                    log.fine("Skipping previous record: " + m.getHomeTeam() + " v " + m.getAwayTeam());
                 }
             }
         } catch (IOException ioe) {
             throw new RuntimeException("Error initializing database: ", ioe);
         }
-        log.severe("Repo size: "+repository.count());
-        log.severe("  new records: "+newCount);
-        log.severe("  old records: "+alreadyCount);
+        log.info("Repo size: "+repository.count());
+        log.info("  new records: "+newCount);
+        log.info("  old records: "+alreadyCount);
     }
 }
