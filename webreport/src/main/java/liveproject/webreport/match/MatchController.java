@@ -1,5 +1,6 @@
 package liveproject.webreport.match;
 
+import liveproject.webreport.season.Season;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -22,8 +23,9 @@ public class MatchController {
 
     @GetMapping("season-report/{season}")
     @ResponseStatus(value = HttpStatus.OK)
-    public String account(@PathVariable("season") String season, Model model) {
-        model.addAttribute("season", matchService.aggregateSeason(season));
+    public String seasonStatistics(@PathVariable("season") String seasonStr, Model model) {
+        Season season = matchService.aggregateSeason(seasonStr);
+        model.addAttribute("season", season);
         return "reports/SeasonReport";
     }
 }

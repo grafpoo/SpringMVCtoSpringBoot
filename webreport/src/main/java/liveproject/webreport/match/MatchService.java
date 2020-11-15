@@ -14,9 +14,12 @@ import java.util.Map;
 @Log
 @Service
 public class MatchService {
-	
-	@Autowired
 	private MatchRepository matchRepository;
+
+	@Autowired
+	public MatchService(MatchRepository matchRepository) {
+		this.matchRepository = matchRepository;
+	}
 
 	@Transactional
 	public Match save(Match match) {
@@ -79,14 +82,15 @@ public class MatchService {
 		log.info(String.format("EPL played : %s", matchRepository.findAll().size()));
 
 		// stick stuff in map
-		Season season = new Season();
-		season.setSeason(seasonStr);
-		season.setTeamResults(teamResults);
-		season.setHomeWins(homeWins);
-		season.setAwayWins(awayWins);
-		season.setDraws(draws);
-		season.setGoallessDraws(goallessDraws);
-		season.setRefereeResults(refereeMap.values());
+		Season season = Season.builder()
+				.season(seasonStr)
+				.teamResults(teamResults)
+				.homeWins(homeWins)
+				.awayWins(awayWins)
+				.draws(draws)
+				.goallessDraws(goallessDraws)
+				.refereeResults(refereeMap.values())
+				.build();
 		return season;
 	}
 
