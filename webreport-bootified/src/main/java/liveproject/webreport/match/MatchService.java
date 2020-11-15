@@ -1,6 +1,6 @@
-package liveproject.webreportbootified.match;
+package liveproject.webreport.match;
 
-import liveproject.webreportbootified.season.Season;
+import liveproject.webreport.season.Season;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +14,12 @@ import java.util.Map;
 @Log
 @Service
 public class MatchService {
-	
-	@Autowired
 	private MatchRepository matchRepository;
+
+	@Autowired
+	public MatchService(MatchRepository matchRepository) {
+		this.matchRepository = matchRepository;
+	}
 
 	@Transactional
 	public Match save(Match match) {
@@ -25,8 +28,6 @@ public class MatchService {
 	}
 
 	public Season aggregateSeason(String seasonStr) {
-		log.info(String.format("WATFORD played home: %s", matchRepository.findByHomeTeam("Watford").size()));
-		log.info(String.format("WATFORD played away: %s", matchRepository.findByAwayTeam("Watford").size()));
 		int homeWins = 0;
 		int awayWins = 0;
 		int draws = 0;
@@ -35,15 +36,9 @@ public class MatchService {
 		Map<String, Integer> teamPlayed = new HashMap<>();
 		Map<String, Integer> teamPoints = new HashMap<>();
 		Map<String, Integer> teamGoalDiff = new HashMap<>();
-		log.info("Match count = "+matchRepository.findBySeason(seasonStr).size());
+		log.fine("Match count = "+matchRepository.findBySeason(seasonStr).size());
 		for ( Match match : matchRepository.findBySeason(seasonStr) ) {
-			if ("Watford".equals(match.getAwayTeam())) {
-				log.info(String.format("WATFORD RESULT: %s / Away to %s / %s - %s", match.getGameDate(), match.getHomeTeam(), match.getFullTimeHomeGoals(), match.getFullTimeAwayGoals()));
-			}
 			addResults(teamPlayed, teamPoints, teamGoalDiff, match.getAwayTeam(), match.getFullTimeAwayGoals()- match.getFullTimeHomeGoals());
-			if ("Watford".equals(match.getHomeTeam())) {
-				log.info(String.format("WATFORD RESULT: %s / Home to %s / %s - %s", match.getGameDate(), match.getAwayTeam(), match.getFullTimeHomeGoals(), match.getFullTimeAwayGoals()));
-			}
 			addResults(teamPlayed, teamPoints, teamGoalDiff, match.getHomeTeam(), match.getFullTimeHomeGoals()- match.getFullTimeAwayGoals());
 			Integer[] addToReferee = new Integer[] {0,0,0,0};
 			if (match.getFullTimeHomeGoals() > match.getFullTimeAwayGoals()) {
@@ -74,9 +69,7 @@ public class MatchService {
 			teamResults.add(new Season.TeamResult(teamName, played, points, goalDiff));
 		}
 		teamResults.sort(new Season.SortByPointsAndGoalDiff());
-		log.info(String.format("WATFORD played home: %s", matchRepository.findByHomeTeam("Watford").size()));
-		log.info(String.format("WATFORD played away: %s", matchRepository.findByAwayTeam("Watford").size()));
-		log.info(String.format("EPL played : %s", matchRepository.findAll().size()));
+		log.fine(String.format("EPL played : %s", matchRepository.findAll().size()));
 
 		// stick stuff in map
 		Season season = new Season();

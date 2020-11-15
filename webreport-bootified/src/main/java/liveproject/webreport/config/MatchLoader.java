@@ -1,10 +1,10 @@
-package liveproject.webreportbootified.config;
+package liveproject.webreport.config;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import liveproject.webreportbootified.match.Match;
-import liveproject.webreportbootified.match.MatchRepository;
+import liveproject.webreport.match.Match;
+import liveproject.webreport.match.MatchRepository;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

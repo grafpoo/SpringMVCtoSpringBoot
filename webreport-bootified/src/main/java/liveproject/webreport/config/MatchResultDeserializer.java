@@ -1,10 +1,10 @@
-package liveproject.webreportbootified.config;
+package liveproject.webreport.config;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-import liveproject.webreportbootified.match.Match;
+import liveproject.webreport.match.Match;
 
 import java.io.IOException;
 

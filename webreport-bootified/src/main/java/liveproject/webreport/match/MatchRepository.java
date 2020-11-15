@@ -1,4 +1,4 @@
-package liveproject.webreportbootified.match;
+package liveproject.webreport.match;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

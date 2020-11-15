@@ -1,4 +1,4 @@
-package liveproject.webreportbootified;
+package liveproject.webreport;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
