@@ -131,4 +131,8 @@ public class MatchService {
 		}
 	}
 
+	public List<String> getAllSeasons() {
+		return matchRepository.findSeasons();
+	}
+
 }
